@@ -65,6 +65,7 @@ body {
   transform: translateY(24px);
 }
 
+[data-motion-ready="true"] [data-reveal]:focus-within,
 [data-motion-ready="true"] [data-reveal][data-revealed="true"] {
   opacity: 1;
   transform: translateY(0);

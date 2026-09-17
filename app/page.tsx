@@ -13,6 +13,7 @@ import {
   ServerCog,
 } from "lucide-react";
 import { ContactForm } from "@/components/contact-form";
+import { ClientTestimonials } from "@/components/client-testimonials";
 import { InteractiveEcosystem } from "@/components/interactive-ecosystem";
 import { ProjectShowcase } from "@/components/project-showcase";
 import { RevealController } from "@/components/reveal-controller";
@@ -171,7 +172,7 @@ export default function Home() {
                   Product thinking, <span className="text-brand">made visible.</span>
                 </h2>
                 <p className="mt-7 max-w-2xl text-lg leading-8 text-muted">
-                  Three original concept studies show how we approach commerce, operational software, and AI-assisted workflows. They demonstrate capability, not fabricated client outcomes.
+                  A live e-commerce website and three original concept studies. Explore our work across commerce, operational software, and AI-assisted workflows.
                 </p>
               </div>
             </div>
@@ -180,6 +181,8 @@ export default function Home() {
             </div>
           </div>
         </section>
+
+        <ClientTestimonials />
 
         <section className="relative overflow-hidden bg-navy py-20 text-white sm:py-28 lg:py-36" data-nav-section="work">
           <div aria-hidden="true" className="absolute inset-0 opacity-20 [background-image:linear-gradient(rgba(148,163,184,.12)_1px,transparent_1px),linear-gradient(90deg,rgba(148,163,184,.12)_1px,transparent_1px)] [background-size:48px_48px]" />
@@ -276,7 +279,7 @@ export default function Home() {
                   What teams should feel <span className="text-brand">throughout the build.</span>
                 </h2>
                 <p className="mt-6 max-w-2xl text-lg leading-8 text-muted">
-                  Approved client quotations were not provided, so we keep this section factual: these are the collaboration standards we are prepared to be measured against.
+                  These are the collaboration standards we are prepared to be measured against, from the first conversation to launch.
                 </p>
               </div>
             </div>
