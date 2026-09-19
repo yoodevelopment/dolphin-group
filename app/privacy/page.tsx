@@ -12,12 +12,12 @@ export default function PrivacyPage() {
     <LegalPage
       eyebrow="Legal / Privacy"
       title="Privacy Policy"
-      intro="This document outlines the principles for handling data on the Dolphin Group website. The current contact form is a demonstration and does not send data without a configured API."
+      intro="This document outlines the principles for handling data on the Dolphin Group website. When you submit the contact form with your consent, your inquiry is sent to the Dolphin Group team by email."
       sections={[
         {
           title: "Data that may be processed",
           paragraphs: [
-            "Once a live contact channel is configured, the form may transmit a name, email address or phone number, company name, selected service, and project description — only after an explicit user action.",
+            "The form transmits your name, email address or phone number, optional company name, selected service, project description, and any service-specific details you enter. Data is sent only when you submit the form with your consent.",
             "The website should not request special categories of personal data, payment details, or passwords.",
           ],
         },
@@ -30,13 +30,13 @@ export default function PrivacyPage() {
         {
           title: "Storage and protection",
           paragraphs: [
-            "Retention periods, storage location, and the responsible data operator must be confirmed when a live API or form service is connected. Until then, this website does not claim to store submitted inquiries.",
+            "The website uses Resend to deliver inquiries to the Dolphin Group email inbox. Submitted details are processed by the email service and stored in the receiving mailbox. The contact form does not create a separate database of inquiries. Do not include passwords, payment details, or other sensitive information in your brief.",
           ],
         },
         {
           title: "Your rights",
           paragraphs: [
-            "You may request information about processing, correction, or deletion of your data through the company’s official contact channel once it is published on the website.",
+            "To request information about processing, correction, or deletion of inquiry data, contact dolphingrouptechus@gmail.com.",
           ],
         },
       ]}

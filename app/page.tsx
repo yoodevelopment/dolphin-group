@@ -172,7 +172,7 @@ export default function Home() {
                   Product thinking, <span className="text-brand">made visible.</span>
                 </h2>
                 <p className="mt-7 max-w-2xl text-lg leading-8 text-muted">
-                  A live e-commerce website and three original concept studies. Explore our work across commerce, operational software, and AI-assisted workflows.
+                  An online store for Caucasian Delights. Explore a real client project, from product discovery to a responsive shopping experience.
                 </p>
               </div>
             </div>
@@ -330,7 +330,7 @@ export default function Home() {
           <div className="grid gap-12 lg:grid-cols-12">
             <div className="lg:col-span-5"><a href="#top" className="inline-flex min-h-11 items-center gap-3" aria-label="Dolphin Group — back to top"><span className="grid size-9 place-items-center bg-brand text-xs font-extrabold">DG</span><span className="text-lg font-extrabold tracking-[-0.04em]">Dolphin Group<span className="text-cyan">.</span></span></a><p className="mt-5 max-w-md leading-7 text-slate-400">Digital products, integrations, AI, analytics, automation, and cloud infrastructure.</p></div>
             <nav className="lg:col-span-2" aria-label="Footer navigation"><FooterTitle>Explore</FooterTitle><div className="mt-5 flex flex-col items-start gap-3 text-sm text-slate-300"><a href="#services" className="hover:text-white">Services</a><a href="#work" className="hover:text-white">Work</a><a href="#process" className="hover:text-white">Approach</a><a href="#technology" className="hover:text-white">Technology</a><a href="#about" className="hover:text-white">Company</a></div></nav>
-            <div className="lg:col-span-2"><FooterTitle>Contact</FooterTitle><a href="#contact" className="mt-5 inline-flex min-h-11 items-center gap-2 text-sm font-bold text-white hover:text-cyan">Discuss a project<ArrowUpRight size={16} aria-hidden="true" /></a><p className="mt-2 text-xs leading-5 text-slate-500">Contact channel setup in progress.</p></div>
+            <div className="lg:col-span-2"><FooterTitle>Contact</FooterTitle><a href="#contact" className="mt-5 inline-flex min-h-11 items-center gap-2 text-sm font-bold text-white hover:text-cyan">Discuss a project<ArrowUpRight size={16} aria-hidden="true" /></a><p className="mt-2 text-xs leading-5 text-slate-500">Send a brief using the contact form.</p></div>
             <div className="lg:col-span-3"><FooterTitle>Documents</FooterTitle><div className="mt-5 flex flex-col items-start gap-3 text-sm text-slate-300"><Link href="/privacy" className="hover:text-white">Privacy policy</Link><Link href="/terms" className="hover:text-white">Terms of use</Link></div></div>
           </div>
           <div className="mt-12 flex flex-col gap-4 border-t border-slate-800 pt-6 font-mono text-[10px] uppercase tracking-[0.13em] text-slate-500 sm:flex-row sm:items-center sm:justify-between"><span>© {new Date().getFullYear()} Dolphin Group</span><span>Digital systems / built to connect</span></div>

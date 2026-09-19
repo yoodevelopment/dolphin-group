@@ -35,7 +35,7 @@ export default function TermsPage() {
         {
           title: "Contact",
           paragraphs: [
-            "Until an official contact channel and form API are published, data submission from the website remains disabled. Contact terms and company details must be added before commercial launch.",
+            "You can submit an inquiry through the contact form or email dolphingrouptechus@gmail.com. Submitting a brief does not create a contract or guarantee a project scope, price, or response time.",
           ],
         },
       ]}
