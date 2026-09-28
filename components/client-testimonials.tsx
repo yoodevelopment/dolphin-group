@@ -1,4 +1,7 @@
+"use client";
+
 import { Star } from "lucide-react";
+import { useLocale } from "@/lib/i18n";
 
 const testimonials = [
   {
@@ -16,6 +19,15 @@ const testimonials = [
 ] as const;
 
 export function ClientTestimonials() {
+  const { t } = useLocale();
+  const localizedTestimonials = testimonials.map((testimonial, index) => ({
+    ...testimonial,
+    author:
+      index === 0
+        ? testimonial.author
+        : t("testimonials.author.2", testimonial.author),
+    quote: t(`testimonials.quote.${index + 1}`, testimonial.quote),
+  }));
   return (
     <section
       id="testimonials"
@@ -28,7 +40,7 @@ export function ClientTestimonials() {
           <div className="lg:col-span-3" data-reveal>
             <span className="flex items-center gap-3 font-mono text-[10px] font-bold uppercase tracking-[0.18em] text-muted">
               <span className="h-px w-7 bg-brand" aria-hidden="true" />
-              Client feedback
+              {t("testimonials.label", "Client feedback")}
             </span>
           </div>
           <h2
@@ -36,12 +48,15 @@ export function ClientTestimonials() {
             className="max-w-[900px] text-[clamp(2.5rem,5vw,5.1rem)] font-extrabold leading-[0.98] tracking-[-0.065em] text-ink lg:col-span-8 lg:col-start-5"
             data-reveal
           >
-            From the teams <span className="text-brand">we build with.</span>
+            {t("testimonials.title.1", "From the teams")}{" "}
+            <span className="text-brand">
+              {t("testimonials.title.2", "we build with.")}
+            </span>
           </h2>
         </div>
 
         <div className="mt-12 border-t sm:mt-16 lg:mt-20">
-          {testimonials.map((testimonial) => (
+          {localizedTestimonials.map((testimonial) => (
             <figure
               key={testimonial.author}
               className="grid gap-7 border-b py-9 last:border-b-0 last:pb-0 sm:py-12 lg:grid-cols-12 lg:gap-10 lg:py-14"
@@ -52,13 +67,15 @@ export function ClientTestimonials() {
                   {testimonial.author}
                 </span>
                 <span className="mt-2 block font-mono text-[10px] uppercase leading-5 tracking-[0.12em] text-muted">
-                  {testimonial.context}
+                  {testimonial.author === "Caucasian Delights (CDelights)"
+                    ? t("testimonials.context.1", testimonial.context)
+                    : t("testimonials.context.2", testimonial.context)}
                 </span>
               </figcaption>
               <div className="min-w-0 lg:col-span-8 lg:col-start-5">
                 <div
                   role="img"
-                  aria-label="5 out of 5 stars"
+                  aria-label={t("testimonials.rating", "5 out of 5 stars")}
                   className="mb-5 flex items-center gap-3 text-brand sm:mb-6"
                 >
                   <span className="flex gap-1" aria-hidden="true">
@@ -72,10 +89,16 @@ export function ClientTestimonials() {
                       />
                     ))}
                   </span>
-                  <span className="font-mono text-xs font-bold" aria-hidden="true">
+                  <span
+                    className="font-mono text-xs font-bold"
+                    aria-hidden="true"
+                  >
                     5.0 / 5
                   </span>
-                  <span className="h-px flex-1 bg-blue-200" aria-hidden="true" />
+                  <span
+                    className="h-px flex-1 bg-blue-200"
+                    aria-hidden="true"
+                  />
                 </div>
                 <blockquote className="text-xl font-medium leading-[1.6] tracking-[-0.025em] text-ink sm:text-2xl lg:text-[1.75rem] lg:leading-[1.5]">
                   <p>&ldquo;{testimonial.quote}&rdquo;</p>

@@ -1,21 +1,73 @@
 "use client";
 
 import Image from "next/image";
-import { BarChart3, Bot, Braces, Cloud, LayoutDashboard, PanelsTopLeft } from "lucide-react";
+import {
+  BarChart3,
+  Bot,
+  Braces,
+  Cloud,
+  LayoutDashboard,
+  PanelsTopLeft,
+} from "lucide-react";
 import { useState } from "react";
+import { useLocale } from "@/lib/i18n";
 
 const nodes = [
-  { id: "web", label: "Web App", description: "A product interface for customers and internal teams.", icon: PanelsTopLeft, position: "left-[6%] top-[17%]" },
-  { id: "crm", label: "CRM", description: "Operational states, responsibilities, and next actions.", icon: LayoutDashboard, position: "right-[6%] top-[17%]" },
-  { id: "api", label: "API", description: "A shared exchange layer connecting every business system.", icon: Braces, position: "left-1/2 top-[45%] -translate-x-1/2 -translate-y-1/2" },
-  { id: "cloud", label: "Cloud", description: "The environment for running, storing, and scaling the product.", icon: Cloud, position: "bottom-[18%] left-[7%]" },
-  { id: "ai", label: "AI", description: "An assistant that works with trusted context and systems.", icon: Bot, position: "bottom-[18%] right-[7%]" },
-  { id: "analytics", label: "Analytics", description: "Clear signals and reports for confident decisions.", icon: BarChart3, position: "bottom-[3%] left-1/2 -translate-x-1/2" },
+  {
+    id: "web",
+    label: "Web App",
+    description: "A product interface for customers and internal teams.",
+    icon: PanelsTopLeft,
+    position: "left-[6%] top-[17%]",
+  },
+  {
+    id: "crm",
+    label: "CRM",
+    description: "Operational states, responsibilities, and next actions.",
+    icon: LayoutDashboard,
+    position: "right-[6%] top-[17%]",
+  },
+  {
+    id: "api",
+    label: "API",
+    description: "A shared exchange layer connecting every business system.",
+    icon: Braces,
+    position: "left-1/2 top-[45%] -translate-x-1/2 -translate-y-1/2",
+  },
+  {
+    id: "cloud",
+    label: "Cloud",
+    description:
+      "The environment for running, storing, and scaling the product.",
+    icon: Cloud,
+    position: "bottom-[18%] left-[7%]",
+  },
+  {
+    id: "ai",
+    label: "AI",
+    description: "An assistant that works with trusted context and systems.",
+    icon: Bot,
+    position: "bottom-[18%] right-[7%]",
+  },
+  {
+    id: "analytics",
+    label: "Analytics",
+    description: "Clear signals and reports for confident decisions.",
+    icon: BarChart3,
+    position: "bottom-[3%] left-1/2 -translate-x-1/2",
+  },
 ] as const;
 
 export function InteractiveEcosystem() {
+  const { t } = useLocale();
+  const localizedNodes = nodes.map((node) => ({
+    ...node,
+    label: t(`ecosystem.${node.id}`, node.label),
+    description: t(`ecosystem.${node.id}.copy`, node.description),
+  }));
   const [active, setActive] = useState<(typeof nodes)[number]["id"]>("api");
-  const activeNode = nodes.find((node) => node.id === active) ?? nodes[2];
+  const activeNode =
+    localizedNodes.find((node) => node.id === active) ?? localizedNodes[2];
 
   return (
     <div className="relative isolate min-h-[610px] overflow-hidden bg-navy text-white lg:h-full lg:min-h-full">
@@ -31,11 +83,19 @@ export function InteractiveEcosystem() {
       <div className="absolute inset-0 opacity-25 [background-image:linear-gradient(rgba(148,163,184,.12)_1px,transparent_1px),linear-gradient(90deg,rgba(148,163,184,.12)_1px,transparent_1px)] [background-size:36px_36px]" />
 
       <div className="absolute inset-x-5 top-5 z-20 flex items-center justify-between font-mono text-[9px] uppercase tracking-[0.16em] text-slate-400 sm:inset-x-7 sm:top-7">
-        <span>Ecosystem / interactive</span>
-        <span className="flex items-center gap-2 text-cyan"><i className="signal-pulse size-1.5 rounded-full bg-cyan" />System active</span>
+        <span>{t("ecosystem.eyebrow", "Ecosystem / interactive")}</span>
+        <span className="flex items-center gap-2 text-cyan">
+          <i className="signal-pulse size-1.5 rounded-full bg-cyan" />
+          {t("ecosystem.active", "System active")}
+        </span>
       </div>
 
-      <svg viewBox="0 0 520 620" className="absolute inset-0 size-full" aria-hidden="true" preserveAspectRatio="none">
+      <svg
+        viewBox="0 0 520 620"
+        className="absolute inset-0 size-full"
+        aria-hidden="true"
+        preserveAspectRatio="none"
+      >
         <g fill="none" stroke="#3a4d72" strokeWidth="1.2">
           <path d="M82 142 C164 142 157 274 260 274" />
           <path d="M438 142 C356 142 363 274 260 274" />
@@ -43,7 +103,12 @@ export function InteractiveEcosystem() {
           <path d="M434 472 C354 472 360 298 260 274" />
           <path d="M260 560 V350 C260 320 260 304 260 274" />
         </g>
-        <g fill="none" stroke="#22d3ee" strokeWidth="2" className="ecosystem-route">
+        <g
+          fill="none"
+          stroke="#22d3ee"
+          strokeWidth="2"
+          className="ecosystem-route"
+        >
           <path d="M82 142 C164 142 157 274 260 274" />
           <path d="M438 142 C356 142 363 274 260 274" />
           <path d="M86 472 C166 472 160 298 260 274" />
@@ -52,8 +117,15 @@ export function InteractiveEcosystem() {
         </g>
       </svg>
 
-      <div className="absolute inset-0 z-10" role="group" aria-label="Interactive map of the Dolphin Group digital ecosystem">
-        {nodes.map((node) => {
+      <div
+        className="absolute inset-0 z-10"
+        role="group"
+        aria-label={t(
+          "ecosystem.aria",
+          "Interactive map of the Dolphin Group digital ecosystem",
+        )}
+      >
+        {localizedNodes.map((node) => {
           const Icon = node.icon;
           const isActive = node.id === active;
           return (
@@ -68,21 +140,40 @@ export function InteractiveEcosystem() {
               onClick={() => setActive(node.id)}
             >
               <span className="flex items-center justify-between gap-3">
-                <Icon size={16} strokeWidth={1.7} aria-hidden="true" className={isActive ? "text-white" : "text-cyan"} />
-                <span className={`size-1.5 rounded-full ${isActive ? "bg-white" : "bg-slate-600"}`} />
+                <Icon
+                  size={16}
+                  strokeWidth={1.7}
+                  aria-hidden="true"
+                  className={isActive ? "text-white" : "text-cyan"}
+                />
+                <span
+                  className={`size-1.5 rounded-full ${isActive ? "bg-white" : "bg-slate-600"}`}
+                />
               </span>
-              <strong className="mt-3 block text-sm tracking-[-0.03em] sm:text-base">{node.label}</strong>
+              <strong className="mt-3 block text-sm tracking-[-0.03em] sm:text-base">
+                {node.label}
+              </strong>
             </button>
           );
         })}
       </div>
 
-      <div id="ecosystem-description" className="absolute inset-x-5 bottom-[31%] z-20 mx-auto max-w-[270px] border-l-2 border-cyan bg-navy/90 p-3 text-center text-xs leading-5 text-slate-300 backdrop-blur-sm sm:bottom-[30%]">
-        <span className="font-mono text-[8px] uppercase tracking-[.14em] text-cyan">{activeNode.label} / active</span>
+      <div
+        id="ecosystem-description"
+        className="absolute inset-x-5 bottom-[31%] z-20 mx-auto max-w-[270px] border-l-2 border-cyan bg-navy/90 p-3 text-center text-xs leading-5 text-slate-300 backdrop-blur-sm sm:bottom-[30%]"
+      >
+        <span className="font-mono text-[8px] uppercase tracking-[.14em] text-cyan">
+          {activeNode.label} / {t("ecosystem.node.active", "active")}
+        </span>
         <p className="mt-1">{activeNode.description}</p>
       </div>
 
-      <p className="sr-only">Web App, CRM, Cloud, AI, and Analytics connect through a shared Dolphin Group API layer.</p>
+      <p className="sr-only">
+        {t(
+          "ecosystem.summary",
+          "Web App, CRM, Cloud, AI, and Analytics connect through a shared Dolphin Group API layer.",
+        )}
+      </p>
     </div>
   );
 }

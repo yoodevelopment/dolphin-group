@@ -11,18 +11,24 @@ export function LegalPage({
   title,
   intro,
   sections,
+  homeHref = "/",
+  homeLabel = "Back to home",
+  version = "Document version: August 1, 2026. Company details and contact information must be verified by the site owner before commercial launch.",
 }: {
   eyebrow: string;
   title: string;
   intro: string;
   sections: LegalSection[];
+  homeHref?: string;
+  homeLabel?: string;
+  version?: string;
 }) {
   return (
     <main className="min-h-screen bg-canvas px-4 py-8 sm:px-6 lg:px-10 lg:py-12">
       <div className="mx-auto max-w-5xl">
-        <Link href="/" className="inline-flex min-h-11 items-center gap-2 text-sm font-bold text-ink hover:text-brand">
+        <Link href={homeHref} className="inline-flex min-h-11 items-center gap-2 text-sm font-bold text-ink hover:text-brand">
           <ArrowLeft size={18} aria-hidden="true" />
-          Back to home
+          {homeLabel}
         </Link>
 
         <div className="mt-12 border-t pt-10 sm:mt-16 sm:pt-14">
@@ -48,7 +54,7 @@ export function LegalPage({
         </div>
 
         <p className="mt-8 text-sm leading-6 text-muted">
-          Document version: August 1, 2026. Company details and contact information must be verified by the site owner before commercial launch.
+          {version}
         </p>
       </div>
     </main>

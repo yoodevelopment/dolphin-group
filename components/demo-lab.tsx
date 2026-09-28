@@ -3,6 +3,7 @@
 import { Bot, Braces, ChartNoAxesCombined, LayoutDashboard } from "lucide-react";
 import { KeyboardEvent, useState } from "react";
 import { ServiceVisual } from "@/components/service-visuals";
+import { useLocale } from "@/lib/i18n";
 
 const demos = [
   { id: "crm", label: "CRM dashboard", description: "Pipeline, signals, and working states in one operational view.", icon: LayoutDashboard, visual: "crm" as const },
@@ -12,13 +13,15 @@ const demos = [
 ] as const;
 
 export default function DemoLab() {
+  const { t } = useLocale();
+  const localizedDemos = demos.map((demo) => ({ ...demo, label: t(`demo.${demo.id}.label`, demo.label), description: t(`demo.${demo.id}.copy`, demo.description) }));
   const [activeIndex, setActiveIndex] = useState(0);
-  const active = demos[activeIndex];
+  const active = localizedDemos[activeIndex];
 
   function handleKeyDown(event: KeyboardEvent<HTMLDivElement>) {
     if (event.key !== "ArrowLeft" && event.key !== "ArrowRight") return;
     event.preventDefault();
-    const nextIndex = event.key === "ArrowRight" ? (activeIndex + 1) % demos.length : (activeIndex - 1 + demos.length) % demos.length;
+    const nextIndex = event.key === "ArrowRight" ? (activeIndex + 1) % localizedDemos.length : (activeIndex - 1 + demos.length) % demos.length;
     setActiveIndex(nextIndex);
     requestAnimationFrame(() => document.getElementById(`demo-tab-${nextIndex}`)?.focus());
   }
@@ -27,18 +30,18 @@ export default function DemoLab() {
     <div className="overflow-hidden border border-slate-700 bg-navy p-4 text-white sm:p-6 lg:p-8">
       <div className="grid gap-6 lg:grid-cols-[260px_1fr] lg:gap-8">
         <div>
-          <span className="font-mono text-[9px] uppercase tracking-[.16em] text-cyan">Demo interfaces / not client work</span>
-          <div className="mt-5 space-y-2" role="tablist" aria-label="Demo interfaces" onKeyDown={handleKeyDown}>
-            {demos.map((demo, index) => {
+          <span className="font-mono text-[9px] uppercase tracking-[.16em] text-cyan">{t("demo.eyebrow", "Demo interfaces / not client work")}</span>
+          <div className="mt-5 space-y-2" role="tablist" aria-label={t("demo.aria", "Demo interfaces")} onKeyDown={handleKeyDown}>
+            {localizedDemos.map((demo, index) => {
               const Icon = demo.icon;
               return <button key={demo.id} id={`demo-tab-${index}`} type="button" role="tab" tabIndex={activeIndex === index ? 0 : -1} aria-selected={activeIndex === index} aria-controls="demo-panel" className={`flex min-h-14 w-full items-center gap-3 border p-3 text-left text-sm font-bold transition-colors ${activeIndex === index ? "border-brand bg-brand" : "border-slate-700 bg-[#101e3d] text-slate-300 hover:border-blue-400"}`} onClick={() => setActiveIndex(index)}><Icon size={17} aria-hidden="true" />{demo.label}<span className="ml-auto font-mono text-[8px]">0{index + 1}</span></button>;
             })}
           </div>
-          <p className="mt-5 text-xs leading-5 text-slate-500">These interfaces explain possible mechanics. They are not presented as client work.</p>
+          <p className="mt-5 text-xs leading-5 text-slate-500">{t("demo.note", "These interfaces explain possible mechanics. They are not presented as client work.")}</p>
         </div>
         <div id="demo-panel" role="tabpanel" aria-labelledby={`demo-tab-${activeIndex}`} aria-live="polite">
           <ServiceVisual service={active.visual} />
-          <div className="mt-4 flex flex-col gap-2 border-l-2 border-cyan pl-4 sm:flex-row sm:items-center sm:justify-between"><div><h3 className="font-extrabold tracking-[-0.03em]">{active.label}</h3><p className="mt-1 text-sm leading-6 text-slate-400">{active.description}</p></div><span className="shrink-0 font-mono text-[8px] uppercase tracking-[.14em] text-cyan">Interactive demo</span></div>
+          <div className="mt-4 flex flex-col gap-2 border-l-2 border-cyan pl-4 sm:flex-row sm:items-center sm:justify-between"><div><h3 className="font-extrabold tracking-[-0.03em]">{active.label}</h3><p className="mt-1 text-sm leading-6 text-slate-400">{active.description}</p></div><span className="shrink-0 font-mono text-[8px] uppercase tracking-[.14em] text-cyan">{t("demo.interactive", "Interactive demo")}</span></div>
         </div>
       </div>
     </div>
